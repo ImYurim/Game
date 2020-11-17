@@ -6,7 +6,27 @@
 #define UP 1
 #define DOWN 2
 #define SUBMIT 3
-
+#ifndef __COLOR_LIST_
+#define __COLOR_LIST_
+enum {
+	black,
+	blue,
+	green,
+	cyan,
+	red,
+	purple,
+	brown,
+	lightgray,
+	darkgray,
+	lightblue,
+	lightgreen,
+	lightcyan,
+	lightred,
+	lightpurple,
+	yellow,
+	white
+};
+#endif
 //함수 선언
 void init();
 void drawTitle();
@@ -14,6 +34,7 @@ void gotoxy(int, int);
 int drawMenu();
 int keyControl();
 void drawInfo();
+void setColor(int, int);
 
 int main() {
 	init();
@@ -27,6 +48,7 @@ int main() {
 			drawInfo();
 		}
 		else if (selectMenu == 4) {
+			printf("\n");
 			return 0;
 		}
 		system("cls");
@@ -39,6 +61,18 @@ int main() {
 
 void init() {
 	system("mode con cols=123 lines=30 | title 할리갈리게임");
+
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO ConsoleCursor;
+	ConsoleCursor.bVisible = 0;
+	ConsoleCursor.dwSize = 1;
+	SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
+}
+
+void setColor(int forground,int background){
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	int code = forground + background * 16;
+	SetConsoleTextAttribute(consoleHandle, code);
 }
 
 void drawTitle() {
@@ -61,11 +95,13 @@ void gotoxy(int x, int y) {
 }
 
 int drawMenu() {
-	int x = 50;
+	int x = 55;
 	int y = 16;
 	gotoxy(x - 2, y);
+	setColor(lightgreen, black);
 	printf("> 게임시작");
 	gotoxy(x, y+2);
+	setColor(white, black);
 	printf("게임정보");
 	gotoxy(x, y+4);
 	printf("  종료  ");
@@ -143,7 +179,7 @@ void drawInfo() {
 	gotoxy(52, 20);
 	printf("개발자 : 임유림");
 	gotoxy(40, 24);
-	printf("엔터를 누르면 메인화면으로 이동합니다.\n");
+	printf("\'엔터\'를 누르면 메인화면으로 이동합니다.\n");
 
 	while (1) {
 		if (keyControl() == SUBMIT) {
