@@ -114,8 +114,35 @@ int drawMenu() {
 				gotoxy(x - 2, y);
 				printf(" ");
 				gotoxy(x - 2, y - 2);
+				setColor(lightgreen, black);
 				printf(">");
 				y = y - 2;
+				gotoxy(x, y);
+				if (y == 16) {
+					printf("게임시작");
+					gotoxy(x, y + 2);
+					setColor(white, black);
+					printf("게임정보");
+					gotoxy(x, y + 4);
+					printf("  종료  ");
+				}
+				else if (y == 18) {
+					printf("게임정보");
+					gotoxy(x, y - 2);
+					setColor(white, black);
+					printf("게임시작");
+					gotoxy(x, y + 2);
+					printf("  종료  ");
+				}
+				else {
+					printf("  종료  ");
+					setColor(white, black);
+					gotoxy(x, y - 4);
+					printf("게임시작");
+					gotoxy(x, y - 2);
+					printf("게임정보");
+				}
+				setColor(white, black);
 			}
 			break;
 		}
@@ -124,8 +151,35 @@ int drawMenu() {
 				gotoxy(x - 2, y);
 				printf(" ");
 				gotoxy(x - 2, y + 2);
+				setColor(lightgreen, black);
 				printf(">");
 				y = y + 2;
+				gotoxy(x, y);
+				if (y == 16) {
+					printf("게임시작");
+					gotoxy(x, y + 2);
+					setColor(white, black);
+					printf("게임정보");
+					gotoxy(x, y + 4);
+					printf("  종료  ");
+				}
+				else if (y == 18) {
+					printf("게임정보");
+					gotoxy(x, y - 2);
+					setColor(white, black);
+					printf("게임시작");
+					gotoxy(x, y + 2);
+					printf("  종료  ");
+				}
+				else {
+					printf("  종료  ");
+					setColor(white, black);
+					gotoxy(x, y - 4);
+					printf("게임시작");
+					gotoxy(x, y - 2);
+					printf("게임정보");
+				}
+				setColor(white, black);
 			}
  			break;
 		}
