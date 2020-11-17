@@ -7,6 +7,11 @@
 #define DOWN 2
 #define SUBMIT 3
 #define EXIT 4
+#define P1CARD 5
+#define P1RING 6
+#define P2CARD 7
+#define P2RING 8
+
 #ifndef __COLOR_LIST_
 #define __COLOR_LIST_
 enum {
@@ -232,6 +237,15 @@ int keyControl() {
 	else if (temp == 13) return SUBMIT; 
 	//백스페이스
 	else if (temp == 8) return EXIT;
+	//A랑 a
+	else if (temp == 65|| temp==97) return P1CARD;
+	//D랑 d
+	else if (temp == 68 || temp == 100) return P1RING;
+	//4
+	else if (temp == 52) return P2CARD;
+	//6
+	else if (temp == 54) return P2RING;
+
 	else return 0;
 }
 
@@ -272,8 +286,25 @@ void drawGame() {
 	system("cls");
 	printf("게임화면 할리갈리");
 	while (1) {
-		if (keyControl() == EXIT) {
+		int key = keyControl();
+		if (key == EXIT) {
 			break;
+		}
+		else if (key == P1RING) {
+			gotoxy(0, 3);
+			printf("d입력 p1이 종을 울렸다.");
+		}
+		else if (key == P1CARD) {
+			gotoxy(0, 3);
+			printf("a입력 p1이 카드를 뒤집었다.");
+		}
+		else if (key == P2CARD) {
+			gotoxy(0, 3);
+			printf("4입력 p2이 카드를 뒤집었다.");
+		}
+		else if (key == P2RING) {
+			gotoxy(0, 3);
+			printf("6입력 p2이 종을 울렸다.");
 		}
 	}
 }
