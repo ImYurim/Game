@@ -77,13 +77,32 @@ void setColor(int forground,int background){
 
 void drawTitle() {
 	printf("\n\n\n\n\n");
-	printf("      #      #        #        #        #        #####             #####           #        #        #        #####       \n");
-	printf("      #      #       # #       #        #          #              #               # #       #        #          #         \n");
-	printf("      ########      #   #      #        #          #              #              #   #      #        #          #         \n");
-	printf("      #      #     #######     #        #          #              #   #####     #######     #        #          #         \n");
-	printf("      #      #    #       #    #        #          #              #     #      #       #    #        #          #         \n");
-	printf("      #      #   #         #   #######  #######  #####             #####      #         #   #######  #######  #####       \n");
-
+	gotoxy(6, 6);
+	setColor(yellow, black);
+	printf("#      #        #        #        #        #####");
+	gotoxy(6, 7);
+	printf("#      #       # #       #        #          #");
+	gotoxy(6, 8);
+	printf("########      #   #      #        #          #");
+	gotoxy(6, 9);
+	printf("#      #     #######     #        #          #");
+	gotoxy(6, 10);
+	printf("#      #    #       #    #        #          #");
+	gotoxy(6, 11);
+	printf("#      #   #         #   #######  #######  #####");
+	setColor(purple, black);
+	gotoxy(67, 6);
+	printf("#####           #        #        #        #####");
+	gotoxy(66, 7);
+	printf("#               # #       #        #          #");
+	gotoxy(66, 8);
+	printf("#              #   #      #        #          #");
+	gotoxy(66, 9);
+	printf("#   #####     #######     #        #          #");
+	gotoxy(66, 10);
+	printf("#     #      #       #    #        #          #");
+	gotoxy(67, 11);
+	printf("#####      #         #   #######  #######  #####");
 }
 
 void gotoxy(int x, int y) {
@@ -217,7 +236,9 @@ int keyControl() {
 void drawInfo() {
 	system("cls");
 	gotoxy(55, 3);
+	setColor(yellow, black);
 	printf("[ 조작법 ]");
+	setColor(white, black);
 	gotoxy(53, 7);
 	printf("1. 카드 뒤집기");
 	gotoxy(55, 8);
@@ -233,7 +254,10 @@ void drawInfo() {
 	gotoxy(52, 20);
 	printf("개발자 : 임유림");
 	gotoxy(40, 24);
-	printf("\'엔터\'를 누르면 메인화면으로 이동합니다.\n");
+	setColor(lightgreen, black);
+	printf("\'엔터\'");
+	setColor(white, black);
+	printf("를 누르면 메인화면으로 이동합니다.\n");
 
 	while (1) {
 		if (keyControl() == SUBMIT) {
