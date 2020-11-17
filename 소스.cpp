@@ -6,6 +6,7 @@
 #define UP 1
 #define DOWN 2
 #define SUBMIT 3
+#define EXIT 4
 #ifndef __COLOR_LIST_
 #define __COLOR_LIST_
 enum {
@@ -35,6 +36,7 @@ int drawMenu();
 int keyControl();
 void drawInfo();
 void setColor(int, int);
+void drawGame();
 
 int main() {
 	init();
@@ -42,7 +44,7 @@ int main() {
 		drawTitle();
 		int selectMenu = drawMenu();
 		if (selectMenu == 0) {
-			//게임시작
+			drawGame();
 		}
 		else if (selectMenu == 2) {
 			drawInfo();
@@ -227,9 +229,9 @@ int keyControl() {
 
 	}
 	//엔터
-	else if (temp == 13) { 
-		return SUBMIT; 
-	}
+	else if (temp == 13) return SUBMIT; 
+	//백스페이스
+	else if (temp == 8) return EXIT;
 	else return 0;
 }
 
@@ -261,6 +263,16 @@ void drawInfo() {
 
 	while (1) {
 		if (keyControl() == SUBMIT) {
+			break;
+		}
+	}
+}
+
+void drawGame() {
+	system("cls");
+	printf("게임화면 할리갈리");
+	while (1) {
+		if (keyControl() == EXIT) {
 			break;
 		}
 	}
