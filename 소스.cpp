@@ -41,6 +41,7 @@ int drawMenu();
 int keyControl();
 void drawInfo();
 void setColor(int, int);
+void startGame();
 void drawGame();
 void playerKeyInput();
 
@@ -50,7 +51,7 @@ int main() {
 		drawTitle();
 		int selectMenu = drawMenu();
 		if (selectMenu == 0) {
-			drawGame();
+			startGame();
 		}
 		else if (selectMenu == 2) {
 			drawInfo();
@@ -283,6 +284,12 @@ void drawInfo() {
 	}
 }
 
+
+void startGame() {
+	drawGame();
+	playerKeyInput();
+}
+
 void drawGame() {
 	system("cls");
 	//p1 카드 그리기
@@ -387,7 +394,6 @@ void drawGame() {
 
 
 
-	playerKeyInput();
 	
 }
 
