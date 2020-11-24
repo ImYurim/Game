@@ -46,18 +46,24 @@ void giveCard();
 void drawGame();
 void playerKeyInput();
 void RestOfCard();
-void drawCard(int);
+void drawCard(int,int);
 
 //전역 변수
 int p1_card;
 int p1_ring;
-int p1_notshowed[30] = { 0 };
+int p1_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
+//몇 번째까지 뒤집었나
+int p1_cardnum = 0;
 int p1_showed[30] = { 0 };
 
 int p2_card;
 int p2_ring;
-int p2_notshowed[30] = { 0 };
+int p2_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
+//몇 번째까지 뒤집었나
+int p2_cardnum = 0;
 int p2_showed[30] = { 0 };
+
+char card[20] = { '*','*','*','*','*','^','^','^','^','^','@','@','@','@','@','&','&','&','&','&' };
 
 int main() {
 	init();
@@ -432,7 +438,7 @@ void drawGame() {
 //플레이어들 키 입력 시 변화
 void playerKeyInput() {
 
-	while (1) {
+	while (p1_card>0&&p2_card>0) {
 		int key = keyControl();
 		if (key == EXIT) {
 			break;
@@ -448,6 +454,8 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("a입력 p1이 카드를 뒤집었다.");
+			drawCard(p1_notshowed[p1_cardnum],1);
+			p1_cardnum++;
 			p1_card--;
 		}
 		else if (key == P2CARD) {
@@ -455,6 +463,8 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("4입력 p2이 카드를 뒤집었다.");
+			drawCard(p2_notshowed[p2_cardnum], 2);
+			p2_cardnum++;
 			p2_card--;
 		}
 		else if (key == P2RING) {
@@ -480,7 +490,195 @@ void RestOfCard() {
 }
 
 //뒤집혀진 카드 그리기
-void drawCard(int cardnum) {
+void drawCard(int cardnum, int player) {
 
+
+
+
+	switch (cardnum) {
+		//1개
+	case 0:
+	case 5:
+	case 10:
+	case 15:
+	{
+		if (player == 1) {
+			gotoxy(22, 8);
+			printf("   ");
+			gotoxy(22, 9);
+			printf("   ");
+			gotoxy(22, 10);
+			printf("   ");
+			gotoxy(23, 9);
+		}
+		else if(player==2) {
+			gotoxy(84, 8);
+			printf("   ");
+			gotoxy(84, 9);
+			printf("   ");
+			gotoxy(84, 10);
+			printf("   ");
+			gotoxy(85,9);
+		}
+		printf("%c",card[cardnum]);
+
+	}
+	break;
+	//2개
+	case 1: 
+	case 6:
+	case 11:
+	case 16:
+	{
+		if (player == 1) {
+			gotoxy(22, 8);
+			printf("   ");
+			gotoxy(22, 9);
+			printf("   ");
+			gotoxy(22, 10);
+			printf("   ");
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(24,10);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			gotoxy(84, 8);
+			printf("   ");
+			gotoxy(84, 9);
+			printf("   ");
+			gotoxy(84, 10);
+			printf("   ");
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 10);
+			printf("%c", card[cardnum]);
+		}
+
+	}break;
+
+	case 2:
+	case 7:
+	case 12:
+	case 17:
+	{
+		if (player == 1) {
+			gotoxy(22, 8);
+			printf("   ");
+			gotoxy(22, 9);
+			printf("   ");
+			gotoxy(22, 10);
+			printf("   ");
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(23, 9);
+			printf("%c", card[cardnum]);
+			gotoxy(24, 10);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			gotoxy(84, 8);
+			printf("   ");
+			gotoxy(84, 9);
+			printf("   ");
+			gotoxy(84, 10);
+			printf("   ");
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(85, 9);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 10);
+			printf("%c", card[cardnum]);
+
+		}
+
+	}break;
+	case 3:
+	case 8:
+	case 13:
+	case 18:
+	{
+		if (player == 1) {
+			gotoxy(22, 8);
+			printf("   ");
+			gotoxy(22, 9);
+			printf("   ");
+			gotoxy(22, 10);
+			printf("   ");
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(24, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(24, 10);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			gotoxy(84, 8);
+			printf("   ");
+			gotoxy(84, 9);
+			printf("   ");
+			gotoxy(84, 10);
+			printf("   ");
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 10);
+			printf("%c", card[cardnum]);
+		}
+	}
+	break;
+	case 4:
+	case 9:
+	case 14:
+	case 19:
+	{
+		if (player == 1) {
+			gotoxy(22, 8);
+			printf("   ");
+			gotoxy(22, 9);
+			printf("   ");
+			gotoxy(22, 10);
+			printf("   ");
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(24, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(23, 9);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(24, 10);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			gotoxy(84, 8);
+			printf("   ");
+			gotoxy(84, 9);
+			printf("   ");
+			gotoxy(84, 10);
+			printf("   ");
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(85, 9);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(86, 10);
+			printf("%c", card[cardnum]);
+		}
+	}
+	break;
+
+
+
+
+	}
 
 }
