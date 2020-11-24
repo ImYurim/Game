@@ -312,10 +312,13 @@ void drawInfo() {
 
 //게임시작
 void startGame() {
+
 	p1_card = 30;
 	p2_card = 30;
 	drawGame();
 	playerKeyInput();
+
+
 }
 
 //플레이어들에게 카드 할당
@@ -435,10 +438,29 @@ void drawGame() {
 	
 }
 
+
+
 //플레이어들 키 입력 시 변화
 void playerKeyInput() {
 
-	while (p1_card>0&&p2_card>0) {
+	while (1) {
+
+
+		if (p1_card == 0) {
+			gotoxy(0, 20);
+			printf("p1의 카드가 모두 소진되었습니다. p2의 승리입니다.");
+			Sleep(2000);
+			break;
+
+		}
+		else if (p2_card == 0) {
+			gotoxy(0, 20);
+			printf("p2의 카드가 모두 소진되었습니다. p1의 승리입니다.");
+			Sleep(2000);
+			break;
+
+		}
+
 		int key = keyControl();
 		if (key == EXIT) {
 			break;
@@ -454,7 +476,7 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("a입력 p1이 카드를 뒤집었다.");
-			drawCard(p1_notshowed[p1_cardnum],1);
+			drawCard(p1_notshowed[p1_cardnum], 1);
 			p1_cardnum++;
 			p1_card--;
 		}
@@ -474,7 +496,10 @@ void playerKeyInput() {
 			printf("6입력 p2이 종을 울렸다.");
 		}
 		RestOfCard();
+		
 	}
+
+
 }
 
 //플레이어들의 남은 카드
