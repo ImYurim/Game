@@ -42,8 +42,22 @@ int keyControl();
 void drawInfo();
 void setColor(int, int);
 void startGame();
+void giveCard();
 void drawGame();
 void playerKeyInput();
+void RestOfCard();
+void drawCard(int);
+
+//전역 변수
+int p1_card;
+int p1_ring;
+int p1_notshowed[30] = { 0 };
+int p1_showed[30] = { 0 };
+
+int p2_card;
+int p2_ring;
+int p2_notshowed[30] = { 0 };
+int p2_showed[30] = { 0 };
 
 int main() {
 	init();
@@ -67,7 +81,7 @@ int main() {
 }
 
 
-
+//게임 화면크기, 게임 제목 설정
 void init() {
 	system("mode con cols=123 lines=30 | title 할리갈리게임");
 
@@ -78,12 +92,14 @@ void init() {
 	SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
 }
 
+//글자, 배경색 바꾸기
 void setColor(int forground,int background){
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	int code = forground + background * 16;
 	SetConsoleTextAttribute(consoleHandle, code);
 }
 
+//메인화면 제목
 void drawTitle() {
 	printf("\n\n\n\n\n");
 	gotoxy(6, 6);
@@ -114,6 +130,7 @@ void drawTitle() {
 	printf("#####      #         #   #######  #######  #####");
 }
 
+//커서 옮기기
 void gotoxy(int x, int y) {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
@@ -122,6 +139,7 @@ void gotoxy(int x, int y) {
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
 
+//메인 화면
 int drawMenu() {
 	int x = 55;
 	int y = 16;
@@ -219,6 +237,7 @@ int drawMenu() {
 	}
 }
 
+//key입력 정의
 int keyControl() {
 	int temp = getch();
 
@@ -251,6 +270,7 @@ int keyControl() {
 	else return 0;
 }
 
+//게임 정보
 void drawInfo() {
 	system("cls");
 	gotoxy(55, 3);
@@ -284,12 +304,20 @@ void drawInfo() {
 	}
 }
 
-
+//게임시작
 void startGame() {
+	p1_card = 30;
+	p2_card = 30;
 	drawGame();
 	playerKeyInput();
 }
 
+//플레이어들에게 카드 할당
+void giveCard() {
+
+}
+
+//플레이어 카드 모양 그려주기
 void drawGame() {
 	system("cls");
 	//p1 카드 그리기
@@ -305,6 +333,8 @@ void drawGame() {
 	printf("│     │");
 	gotoxy(5, 9);
 	printf("│     │");
+	gotoxy(8, 9);
+	printf("%d", p1_card);
 	gotoxy(5, 10);
 	printf("│     │");
 	gotoxy(5, 11);
@@ -354,6 +384,8 @@ void drawGame() {
 	printf("│     │");
 	gotoxy(66, 9);
 	printf("│     │");
+	gotoxy(69, 9);
+	printf("%d", p2_card);
 	gotoxy(66, 10);
 	printf("│     │");
 	gotoxy(66, 11);
@@ -397,8 +429,9 @@ void drawGame() {
 	
 }
 
+//플레이어들 키 입력 시 변화
 void playerKeyInput() {
-	//플레이어 키 입력
+
 	while (1) {
 		int key = keyControl();
 		if (key == EXIT) {
@@ -415,12 +448,14 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("a입력 p1이 카드를 뒤집었다.");
+			p1_card--;
 		}
 		else if (key == P2CARD) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("4입력 p2이 카드를 뒤집었다.");
+			p2_card--;
 		}
 		else if (key == P2RING) {
 			gotoxy(0, 20);
@@ -428,5 +463,24 @@ void playerKeyInput() {
 			gotoxy(0, 20);
 			printf("6입력 p2이 종을 울렸다.");
 		}
+		RestOfCard();
 	}
+}
+
+//플레이어들의 남은 카드
+void RestOfCard() {
+	gotoxy(8,9);
+	printf("  ");
+	gotoxy(8, 9);
+	printf("%d", p1_card);
+	gotoxy(69,9);
+	printf("  ");
+	gotoxy(69, 9);
+	printf("%d", p2_card);
+}
+
+//뒤집혀진 카드 그리기
+void drawCard(int cardnum) {
+
+
 }
