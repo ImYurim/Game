@@ -46,20 +46,28 @@ void giveCard();
 void drawGame();
 void playerKeyInput();
 void RestOfCard();
+void checkToGetCard(int);
 void drawCard(int,int);
 
 //전역 변수
+//가지고 있는 카드 개수
 int p1_card;
+//종울렸나
 int p1_ring;
+//카드 뒤집었나
+int p1_open = 0;
+//처음에 할당 받은 카드
 int p1_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
 //몇 번째까지 뒤집었나
 int p1_cardnum = 0;
+//뒤집은 카드
 int p1_showed[30] = { 0 };
+
 
 int p2_card;
 int p2_ring;
+int p2_open = 0;
 int p2_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
-//몇 번째까지 뒤집었나
 int p2_cardnum = 0;
 int p2_showed[30] = { 0 };
 
@@ -470,22 +478,25 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("d입력 p1이 종을 울렸다.");
+			checkToGetCard(1);
 		}
-		else if (key == P1CARD) {
+		else if (key == P1CARD && p1_open==0) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("a입력 p1이 카드를 뒤집었다.");
 			drawCard(p1_notshowed[p1_cardnum], 1);
+			p1_open = 1;
 			p1_cardnum++;
 			p1_card--;
 		}
-		else if (key == P2CARD) {
+		else if (key == P2CARD && p2_open==0) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("4입력 p2이 카드를 뒤집었다.");
 			drawCard(p2_notshowed[p2_cardnum], 2);
+			p2_open = 1;
 			p2_cardnum++;
 			p2_card--;
 		}
@@ -496,9 +507,28 @@ void playerKeyInput() {
 			printf("6입력 p2이 종을 울렸다.");
 		}
 		RestOfCard();
+		if (p1_open == 1 && p2_open == 1) {
+			p1_open = 0;
+			p2_open = 0;
+		}
 		
 	}
 
+
+}
+
+//카드 같은 모양에 개수 5개 일치하는지 확인한 후 종 울린사람이 맞추면 상대방 카드 뺏어오기
+void checkToGetCard(int player) {
+	if (player == 1) {
+		if (p1_notshowed[p1_cardnum] == 1) {
+			if (p2_notshowed[p2_cardnum] == 4) {
+				//p2 카드를 p1한테 줌
+			}
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+			}
+		}
+	}
 
 }
 
