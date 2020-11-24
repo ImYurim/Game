@@ -42,6 +42,7 @@ int keyControl();
 void drawInfo();
 void setColor(int, int);
 void drawGame();
+void playerKeyInput();
 
 int main() {
 	init();
@@ -284,26 +285,141 @@ void drawInfo() {
 
 void drawGame() {
 	system("cls");
-	printf("게임화면 할리갈리");
+	//p1 카드 그리기
+	//아직 안 뒤집은 카드
+	gotoxy(5, 3);
+	setColor(yellow, black);
+	printf("P1");
+
+	setColor(white, black);
+	gotoxy(5,7);
+	printf("┌─────┐");
+	gotoxy(5, 8);
+	printf("│     │");
+	gotoxy(5, 9);
+	printf("│     │");
+	gotoxy(5, 10);
+	printf("│     │");
+	gotoxy(5, 11);
+	printf("└─────┘");
+	gotoxy(8, 6);
+	printf("┌─────┐");
+	gotoxy(14, 7);
+	printf("│");
+	gotoxy(14, 8);
+	printf("│");
+	gotoxy(14, 9);
+	printf("│");
+	gotoxy(12, 10);
+	printf("──┘");
+
+	//뒤집은 카드
+	gotoxy(20, 7);
+	printf("┌─────┐");
+	gotoxy(20, 8);
+	printf("│     │");
+	gotoxy(20, 9);
+	printf("│     │");
+	gotoxy(20, 10);
+	printf("│     │");
+	gotoxy(20, 11);
+	printf("└─────┘");
+	gotoxy(23, 6);
+	printf("┌─────┐");
+	gotoxy(29, 7);
+	printf("│");
+	gotoxy(29, 8);
+	printf("│");
+	gotoxy(29, 9);
+	printf("│");
+	gotoxy(27, 10);
+	printf("──┘");
+
+	//p2 카드 그리기
+	gotoxy(66, 3);
+	setColor(purple, black);
+	printf("P2");
+	setColor(white, black);
+	//안 뒤집은 카드
+	gotoxy(66, 7);
+	printf("┌─────┐");
+	gotoxy(66, 8);
+	printf("│     │");
+	gotoxy(66, 9);
+	printf("│     │");
+	gotoxy(66, 10);
+	printf("│     │");
+	gotoxy(66, 11);
+	printf("└─────┘");
+	gotoxy(69, 6);
+	printf("┌─────┐");
+	gotoxy(75, 7);
+	printf("│");
+	gotoxy(75, 8);
+	printf("│");
+	gotoxy(75, 9);
+	printf("│");
+	gotoxy(73, 10);
+	printf("──┘");
+
+	//뒤집은 카드
+	gotoxy(82, 7);
+	printf("┌─────┐");
+	gotoxy(82, 8);
+	printf("│     │");
+	gotoxy(82, 9);
+	printf("│     │");
+	gotoxy(82, 10);
+	printf("│     │");
+	gotoxy(82, 11);
+	printf("└─────┘");
+	gotoxy(85, 6);
+	printf("┌─────┐");
+	gotoxy(91, 7);
+	printf("│");
+	gotoxy(91, 8);
+	printf("│");
+	gotoxy(91, 9);
+	printf("│");
+	gotoxy(89, 10);
+	printf("──┘");
+
+
+
+
+	playerKeyInput();
+	
+}
+
+void playerKeyInput() {
+	//플레이어 키 입력
 	while (1) {
 		int key = keyControl();
 		if (key == EXIT) {
 			break;
 		}
 		else if (key == P1RING) {
-			gotoxy(0, 3);
+			gotoxy(0, 20);
+			printf("                            ");
+			gotoxy(0, 20);
 			printf("d입력 p1이 종을 울렸다.");
 		}
 		else if (key == P1CARD) {
-			gotoxy(0, 3);
+			gotoxy(0, 20);
+			printf("                            ");
+			gotoxy(0, 20);
 			printf("a입력 p1이 카드를 뒤집었다.");
 		}
 		else if (key == P2CARD) {
-			gotoxy(0, 3);
+			gotoxy(0, 20);
+			printf("                            ");
+			gotoxy(0, 20);
 			printf("4입력 p2이 카드를 뒤집었다.");
 		}
 		else if (key == P2RING) {
-			gotoxy(0, 3);
+			gotoxy(0, 20);
+			printf("                            ");
+			gotoxy(0, 20);
 			printf("6입력 p2이 종을 울렸다.");
 		}
 	}
