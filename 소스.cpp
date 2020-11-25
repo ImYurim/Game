@@ -70,8 +70,6 @@ int p1_notshowed[60] = { 0 };
 int p1_cardnum = 0;
 //뒤집은 카드
 int p1_showed[30] = { 0 };
-//종 울리고 나서 뒤집은 카드 개수
-int p1_ring_card = 0;
 
 
 int p2_card;
@@ -80,7 +78,7 @@ int p2_open = 0;
 int p2_notshowed[60] = { 0 };
 int p2_cardnum = 0;
 int p2_showed[30] = { 0 };
-int p2_ring_card = 0;
+
 
 char card[20] = { '*','*','*','*','*','^','^','^','^','^','@','@','@','@','@','&','&','&','&','&' };
 
@@ -529,17 +527,21 @@ void playerKeyInput() {
 			break;
 		}
 		else if (key == P1RING) {
-			gotoxy(0, 20);
-			printf("                            ");
-			gotoxy(0, 20);
+			gotoxy(0 , 20);
+			printf("                               ");
+			gotoxy(3, 20);
+			setColor(yellow, black);
 			printf("p1이 종을 울렸습니다.");
+			setColor(white, black);
 			checkToGetCard(1);
 		}
 		else if (key == P1CARD && p1_open == 0) {
-			gotoxy(0, 20);
+			gotoxy(3, 23);
 			printf("                            ");
 			gotoxy(0, 20);
-			printf("p1이 카드를 뒤집었다.");
+			printf("                                 ");
+			gotoxy(3, 20);
+			printf("p1이 카드를 뒤집었습니다.");
 			drawCard(p1_notshowed[p1_cardnum], 1);
 			p1_open = 1;
 			p1_cardnum++;
@@ -547,10 +549,12 @@ void playerKeyInput() {
 
 		}
 		else if (key == P2CARD && p2_open == 0) {
-			gotoxy(0, 20);
+			gotoxy(61, 23);
 			printf("                            ");
-			gotoxy(0, 20);
-			printf("p2이 카드를 뒤집었다.");
+			gotoxy(59, 20);
+			printf("                                 ");
+			gotoxy(61, 20);
+			printf("p2이 카드를 뒤집었습니다.");
 			drawCard(p2_notshowed[p2_cardnum], 2);
 			p2_open = 1;
 			p2_cardnum++;
@@ -558,10 +562,12 @@ void playerKeyInput() {
 
 		}
 		else if (key == P2RING) {
-			gotoxy(0, 20);
-			printf("                            ");
-			gotoxy(0, 20);
-			printf("p2이 종을 울렸다.");
+			gotoxy(59, 20);
+			printf("                                ");
+			gotoxy(61, 20);
+			setColor(purple, black);
+			printf("p2이 종을 울렸습니다.");
+			setColor(white, black);
 			checkToGetCard(2);
 		}
 		RestOfCard();
@@ -775,10 +781,12 @@ void giveCardToP1() {
 	}
 	p2_card = p2_card - p2_cardnum;
 	p2_cardnum = 0;
-	gotoxy(0, 21);
+	gotoxy(3, 23);
 	printf("                            ");
-	gotoxy(0, 21);
-	printf("p1이 카드를 얻었다.");
+	gotoxy(3, 23);
+	setColor(yellow, black);
+	printf("p1이 카드를 얻었습니다.");
+	setColor(white, black);
 }
 
 void giveCardToP2() {
@@ -802,10 +810,12 @@ void giveCardToP2() {
 	p1_card = p1_card - p1_cardnum;
 	p1_cardnum = 0;
 
-	gotoxy(0, 21);
+	gotoxy(61, 23);
 	printf("                            ");
-	gotoxy(0, 21);
-	printf("p2이 카드를 얻었다.");
+	gotoxy(61, 23);
+	setColor(purple, black);
+	printf("p2이 카드를 얻었습니다.");
+	setColor(white, black);
 }
 
 //플레이어들의 남은 카드
