@@ -544,7 +544,7 @@ void playerKeyInput() {
 void checkToGetCard(int player) {
 	// * 카드
 		if ((p1_notshowed[p1_cardnum-1] == 0 && p2_notshowed[p2_cardnum-1] == 3 )||(p1_notshowed[p1_cardnum-1] == 3 && p2_notshowed[p2_cardnum-1] == 0)) {
-			//p2 카드를 p1한테 줌
+			//p1이 먼저 맞춤 p2 카드를 p1한테 줌
 			if (player == 1) {
 				giveCardToP1();
 
@@ -552,7 +552,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+				//P2가 맞춤 
 				giveCardToP2();
 				return;
 			}
@@ -566,7 +566,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+				
 				giveCardToP2();
 				return;
 			}
@@ -579,7 +579,7 @@ void checkToGetCard(int player) {
 				}
 
 				else {
-					//틀렸으니 p1 카드를 p2한테 줌
+			
 					giveCardToP2();
 					return;
 				}
@@ -595,7 +595,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+				
 				giveCardToP2();
 				return;
 			}
@@ -608,7 +608,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+			
 				giveCardToP2();
 				return;
 			}
@@ -620,7 +620,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+
 				giveCardToP2();
 				return;
 			}
@@ -635,7 +635,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+				
 				giveCardToP2();
 				return;
 			}
@@ -647,7 +647,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+			
 				giveCardToP2();
 				return;
 			}
@@ -659,7 +659,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+			
 				giveCardToP2();
 				return;
 			}
@@ -674,7 +674,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+			
 				giveCardToP2();
 				return;
 			}
@@ -686,7 +686,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+			
 				giveCardToP2();
 				return;
 			}
@@ -698,7 +698,7 @@ void checkToGetCard(int player) {
 			}
 
 			else {
-				//틀렸으니 p1 카드를 p2한테 줌
+
 				giveCardToP2();
 				return;
 			}
