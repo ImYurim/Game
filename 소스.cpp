@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
+#include<cstdlib>
+#include<ctime>
+
+
 
 
 #define UP 1
@@ -47,7 +51,7 @@ void drawGame();
 void playerKeyInput();
 void RestOfCard();
 void checkToGetCard(int);
-void drawCard(int,int);
+void drawCard(int, int);
 
 //전역 변수
 //가지고 있는 카드 개수
@@ -57,7 +61,7 @@ int p1_ring;
 //카드 뒤집었나
 int p1_open = 0;
 //처음에 할당 받은 카드
-int p1_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
+int p1_notshowed[60] = { 0 };
 //몇 번째까지 뒤집었나
 int p1_cardnum = 0;
 //뒤집은 카드
@@ -67,7 +71,7 @@ int p1_showed[30] = { 0 };
 int p2_card;
 int p2_ring;
 int p2_open = 0;
-int p2_notshowed[30] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,0,1,2,3,4,5,6,7,8,9 };
+int p2_notshowed[60] = { 0 };
 int p2_cardnum = 0;
 int p2_showed[30] = { 0 };
 
@@ -107,7 +111,7 @@ void init() {
 }
 
 //글자, 배경색 바꾸기
-void setColor(int forground,int background){
+void setColor(int forground, int background) {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	int code = forground + background * 16;
 	SetConsoleTextAttribute(consoleHandle, code);
@@ -160,10 +164,10 @@ int drawMenu() {
 	gotoxy(x - 2, y);
 	setColor(lightgreen, black);
 	printf("> 게임시작");
-	gotoxy(x, y+2);
+	gotoxy(x, y + 2);
 	setColor(white, black);
 	printf("게임정보");
-	gotoxy(x, y+4);
+	gotoxy(x, y + 4);
 	printf("  종료  ");
 
 	while (1) {
@@ -241,11 +245,11 @@ int drawMenu() {
 				}
 				setColor(white, black);
 			}
- 			break;
+			break;
 		}
 
 		case SUBMIT: {
-			return y-16;
+			return y - 16;
 		}
 		}
 	}
@@ -269,11 +273,11 @@ int keyControl() {
 
 	}
 	//엔터
-	else if (temp == 13) return SUBMIT; 
+	else if (temp == 13) return SUBMIT;
 	//백스페이스
 	else if (temp == 8) return EXIT;
 	//A랑 a
-	else if (temp == 65|| temp==97) return P1CARD;
+	else if (temp == 65 || temp == 97) return P1CARD;
 	//D랑 d
 	else if (temp == 68 || temp == 100) return P1RING;
 	//4
@@ -320,7 +324,7 @@ void drawInfo() {
 
 //게임시작
 void startGame() {
-
+	giveCard();
 	p1_card = 30;
 	p2_card = 30;
 	drawGame();
@@ -331,6 +335,17 @@ void startGame() {
 
 //플레이어들에게 카드 할당
 void giveCard() {
+	srand((unsigned int)time(NULL));
+
+	for (int i = 0; i < 30; i++)
+	{
+		p1_notshowed[i] = (rand() % 20);
+		
+	}
+	for (int i = 0; i < 30; i++)
+	{
+		p2_notshowed[i] = (rand() % 20);
+	}
 
 }
 
@@ -344,7 +359,7 @@ void drawGame() {
 	printf("P1");
 
 	setColor(white, black);
-	gotoxy(5,7);
+	gotoxy(5, 7);
 	printf("┌─────┐");
 	gotoxy(5, 8);
 	printf("│     │");
@@ -443,7 +458,7 @@ void drawGame() {
 
 
 
-	
+
 }
 
 
@@ -480,7 +495,7 @@ void playerKeyInput() {
 			printf("d입력 p1이 종을 울렸다.");
 			checkToGetCard(1);
 		}
-		else if (key == P1CARD && p1_open==0) {
+		else if (key == P1CARD && p1_open == 0) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
@@ -490,7 +505,7 @@ void playerKeyInput() {
 			p1_cardnum++;
 			p1_card--;
 		}
-		else if (key == P2CARD && p2_open==0) {
+		else if (key == P2CARD && p2_open == 0) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
@@ -511,7 +526,7 @@ void playerKeyInput() {
 			p1_open = 0;
 			p2_open = 0;
 		}
-		
+
 	}
 
 
@@ -534,11 +549,11 @@ void checkToGetCard(int player) {
 
 //플레이어들의 남은 카드
 void RestOfCard() {
-	gotoxy(8,9);
+	gotoxy(8, 9);
 	printf("  ");
 	gotoxy(8, 9);
 	printf("%d", p1_card);
-	gotoxy(69,9);
+	gotoxy(69, 9);
 	printf("  ");
 	gotoxy(69, 9);
 	printf("%d", p2_card);
@@ -566,21 +581,21 @@ void drawCard(int cardnum, int player) {
 			printf("   ");
 			gotoxy(23, 9);
 		}
-		else if(player==2) {
+		else if (player == 2) {
 			gotoxy(84, 8);
 			printf("   ");
 			gotoxy(84, 9);
 			printf("   ");
 			gotoxy(84, 10);
 			printf("   ");
-			gotoxy(85,9);
+			gotoxy(85, 9);
 		}
-		printf("%c",card[cardnum]);
+		printf("%c", card[cardnum]);
 
 	}
 	break;
 	//2개
-	case 1: 
+	case 1:
 	case 6:
 	case 11:
 	case 16:
@@ -594,7 +609,7 @@ void drawCard(int cardnum, int player) {
 			printf("   ");
 			gotoxy(22, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(24,10);
+			gotoxy(24, 10);
 			printf("%c", card[cardnum]);
 		}
 		else if (player == 2) {
