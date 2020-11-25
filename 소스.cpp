@@ -52,6 +52,8 @@ void playerKeyInput();
 void RestOfCard();
 void checkToGetCard(int);
 void drawCard(int, int);
+void giveCardToP1();
+void giveCardToP2();
 
 //전역 변수
 //가지고 있는 카드 개수
@@ -66,6 +68,8 @@ int p1_notshowed[60] = { 0 };
 int p1_cardnum = 0;
 //뒤집은 카드
 int p1_showed[30] = { 0 };
+//종 울리고 나서 뒤집은 카드 개수
+int p1_ring_card = 0;
 
 
 int p2_card;
@@ -74,6 +78,7 @@ int p2_open = 0;
 int p2_notshowed[60] = { 0 };
 int p2_cardnum = 0;
 int p2_showed[30] = { 0 };
+int p2_ring_card = 0;
 
 char card[20] = { '*','*','*','*','*','^','^','^','^','^','@','@','@','@','@','&','&','&','&','&' };
 
@@ -504,6 +509,7 @@ void playerKeyInput() {
 			p1_open = 1;
 			p1_cardnum++;
 			p1_card--;
+
 		}
 		else if (key == P2CARD && p2_open == 0) {
 			gotoxy(0, 20);
@@ -514,12 +520,14 @@ void playerKeyInput() {
 			p2_open = 1;
 			p2_cardnum++;
 			p2_card--;
+
 		}
 		else if (key == P2RING) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("6입력 p2이 종을 울렸다.");
+			checkToGetCard(2);
 		}
 		RestOfCard();
 		if (p1_open == 1 && p2_open == 1) {
@@ -534,17 +542,235 @@ void playerKeyInput() {
 
 //카드 같은 모양에 개수 5개 일치하는지 확인한 후 종 울린사람이 맞추면 상대방 카드 뺏어오기
 void checkToGetCard(int player) {
-	if (player == 1) {
-		if (p1_notshowed[p1_cardnum] == 1) {
-			if (p2_notshowed[p2_cardnum] == 4) {
-				//p2 카드를 p1한테 줌
+	// * 카드
+		if ((p1_notshowed[p1_cardnum-1] == 0 && p2_notshowed[p2_cardnum-1] == 3 )||(p1_notshowed[p1_cardnum-1] == 3 && p2_notshowed[p2_cardnum-1] == 0)) {
+			//p2 카드를 p1한테 줌
+			if (player == 1) {
+				giveCardToP1();
+
+				return;
 			}
+
 			else {
 				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
 			}
 		}
-	}
 
+
+		else if ((p1_notshowed[p1_cardnum-1] == 1 && p2_notshowed[p2_cardnum-1] == 2)||(p1_notshowed[p1_cardnum-1] == 2 && p2_notshowed[p2_cardnum-1] == 1)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+
+		else if ((p1_notshowed[p1_cardnum-1] == 4 && p2_notshowed[p2_cardnum-1] != 0 && p2_notshowed[p2_cardnum-1] != 1 && p2_notshowed[p2_cardnum-1] != 2 && p2_notshowed[p2_cardnum-1] != 3 ) || (p2_notshowed[p2_cardnum-1] == 4 && p1_notshowed[p1_cardnum-1] != 0 && p1_notshowed[p1_cardnum-1] != 1 && p1_notshowed[p1_cardnum-1] != 2 && p1_notshowed[p1_cardnum-1] != 3)) {
+				if (player == 1) {
+					giveCardToP1();
+					return;
+				}
+
+				else {
+					//틀렸으니 p1 카드를 p2한테 줌
+					giveCardToP2();
+					return;
+				}
+		}
+
+
+		//^ 카드
+		else if ((p1_notshowed[p1_cardnum-1] == 5 && p2_notshowed[p2_cardnum-1] == 8)||(p1_notshowed[p1_cardnum-1] == 8 && p2_notshowed[p2_cardnum-1] == 5)) {
+			//p2 카드를 p1한테 줌
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+
+		else if ((p1_notshowed[p1_cardnum-1] == 6 && p2_notshowed[p2_cardnum-1] == 7)||(p1_notshowed[p1_cardnum-1] == 7 && p2_notshowed[p2_cardnum-1] == 6)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+		else if ((p1_notshowed[p1_cardnum-1] == 9 && p2_notshowed[p2_cardnum-1] != 5 && p2_notshowed[p2_cardnum-1] != 6 && p2_notshowed[p2_cardnum-1] != 7 && p2_notshowed[p2_cardnum-1] != 8)||(p2_notshowed[p2_cardnum-1] == 9 && p1_notshowed[p1_cardnum-1] != 5 && p1_notshowed[p1_cardnum-1] != 6 && p1_notshowed[p1_cardnum-1] != 7 && p1_notshowed[p1_cardnum-1] != 8)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+
+		//@ 카드
+		else if ((p1_notshowed[p1_cardnum-1] == 10 && p2_notshowed[p2_cardnum-1] == 13)||(p1_notshowed[p1_cardnum-1] == 13 && p2_notshowed[p2_cardnum-1] == 10)) {
+			//p2 카드를 p1한테 줌
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+		else if ((p1_notshowed[p1_cardnum-1] == 11 && p2_notshowed[p2_cardnum-1] == 12)||(p1_notshowed[p1_cardnum-1] == 12 && p2_notshowed[p2_cardnum-1] == 11)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+		else if ((p1_notshowed[p1_cardnum-1] == 14 && p2_notshowed[p2_cardnum-1] != 10 && p2_notshowed[p2_cardnum-1] != 11 && p2_notshowed[p2_cardnum-1] != 12 && p2_notshowed[p2_cardnum-1] != 13)||(p2_notshowed[p2_cardnum-1] == 14 && p1_notshowed[p1_cardnum-1] != 10 && p1_notshowed[p1_cardnum-1] != 11 && p1_notshowed[p1_cardnum-1] != 12 && p1_notshowed[p1_cardnum-1] != 13)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+
+		//& 카드
+		else if ((p1_notshowed[p1_cardnum-1] == 15 && p2_notshowed[p2_cardnum-1] == 18)||(p1_notshowed[p1_cardnum-1] == 18 && p2_notshowed[p2_cardnum-1] == 15)) {
+			//p2 카드를 p1한테 줌
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+		else if ((p1_notshowed[p1_cardnum-1] == 16 && p2_notshowed[p2_cardnum-1] == 17)||(p1_notshowed[p1_cardnum-1] == 17 && p2_notshowed[p2_cardnum-1] == 16)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+		else if ((p1_notshowed[p1_cardnum-1] == 19 && p2_notshowed[p2_cardnum-1] != 15 && p2_notshowed[p2_cardnum-1] != 16 && p2_notshowed[p2_cardnum-1] != 17 && p2_notshowed[p2_cardnum-1] != 18)|| (p2_notshowed[p2_cardnum-1] == 19 && p1_notshowed[p1_cardnum-1] != 15 && p1_notshowed[p1_cardnum-1] != 16 && p1_notshowed[p1_cardnum-1] != 17 && p1_notshowed[p1_cardnum-1] != 18)) {
+			if (player == 1) {
+				giveCardToP1();
+				return;
+			}
+
+			else {
+				//틀렸으니 p1 카드를 p2한테 줌
+				giveCardToP2();
+				return;
+			}
+		}
+
+		else {
+			if (player == 1) {
+				giveCardToP2();
+				return;
+			}
+
+			else {
+
+				giveCardToP1();
+				return;
+			}
+		}
+
+}
+
+void giveCardToP1() {
+	//p2가 준 카드 받기
+	for (int i = 0; i <= p2_cardnum; i++) {
+		p1_card++;
+		p1_notshowed[p1_card] = p2_notshowed[i];
+	}
+	//p1이 공개했던 카드 다시 맨뒤로 보내기
+	for (int i = 0; i <= p1_cardnum; i++) {
+		p1_notshowed[p1_card+1+i] = p1_notshowed[i];
+	}
+	//p1공개했던 카드 배열에서 삭제
+	for (int i = p1_cardnum + 1; i <= p1_card; i++) {
+		p1_notshowed[i - p1_cardnum-1] = p1_notshowed[i];
+	}
+	p1_cardnum = 0;
+	//p2는 p1에게 준 카드 배열에서 삭제
+	for (int i = p2_cardnum+1; i <= p2_card; i++) {
+		p2_notshowed[i - p2_cardnum-1] = p2_notshowed[i];
+	}
+	p2_card = p2_card - p2_cardnum;
+	p2_cardnum = 0;
+	gotoxy(0, 21);
+	printf("                            ");
+	gotoxy(0, 21);
+	printf("p1이 카드를 얻었다.");
+}
+
+void giveCardToP2() {
+	for (int i = 0; i <= p1_cardnum; i++) {
+		p2_card++;
+		p2_notshowed[p2_card] = p1_notshowed[i];
+	}
+	//p2이 공개했던 카드 다시 맨뒤로 보내기
+	for (int i = 0; i <= p2_cardnum; i++) {
+		p2_notshowed[p2_card+1+i] = p2_notshowed[i];
+	}
+	for (int i = p2_cardnum+1; i <= p2_card; i++) {
+		p2_notshowed[i - p2_cardnum-1] = p2_notshowed[i];
+	}
+	p2_cardnum = 0;
+	//p1은 p2에게 준 카드 배열에서 삭제
+	for (int i = p1_cardnum+1; i <= p1_card; i++) {
+		p1_notshowed[i - p1_cardnum-1] = p1_notshowed[i];
+
+	}
+	p1_card = p1_card - p1_cardnum;
+	p1_cardnum = 0;
+
+	gotoxy(0, 21);
+	printf("                            ");
+	gotoxy(0, 21);
+	printf("p2이 카드를 얻었다.");
 }
 
 //플레이어들의 남은 카드
