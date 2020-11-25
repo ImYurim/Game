@@ -530,8 +530,14 @@ void playerKeyInput() {
 			gotoxy(0 , 20);
 			printf("                               ");
 			gotoxy(3, 20);
-			setColor(lightred, black);
-			printf("♪p1이 종을 울렸습니다.♪");
+			setColor(purple, black);
+			printf("♪");
+			gotoxy(5, 20);
+			setColor(yellow, black);
+			printf("p1이 종을 울렸습니다.");
+			setColor(purple, black);
+			gotoxy(25, 20);
+			printf("♪");
 			setColor(white, black);
 			p1_ring = 1;
 			checkToGetCard(1);
