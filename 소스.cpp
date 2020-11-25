@@ -507,14 +507,14 @@ void playerKeyInput() {
 	while (1) {
 
 
-		if (p1_card == 0) {
+		if (p1_card-p1_cardnum == 0) {
 			gotoxy(0, 20);
 			printf("p1의 카드가 모두 소진되었습니다. p2의 승리입니다.");
 			Sleep(2000);
 			break;
 
 		}
-		else if (p2_card == 0) {
+		else if (p2_card-p2_cardnum == 0) {
 			gotoxy(0, 20);
 			printf("p2의 카드가 모두 소진되었습니다. p1의 승리입니다.");
 			Sleep(2000);
@@ -550,7 +550,6 @@ void playerKeyInput() {
 			drawCard(p1_notshowed[p1_cardnum], 1);
 			p1_open = 1;
 			p1_cardnum++;
-			p1_card--;
 			p1_ring = 0;
 
 		}
@@ -568,7 +567,6 @@ void playerKeyInput() {
 			drawCard(p2_notshowed[p2_cardnum], 2);
 			p2_open = 1;
 			p2_cardnum++;
-			p2_card--;
 			p2_ring = 0;
 
 		}
@@ -626,7 +624,7 @@ void checkToGetCard(int player) {
 			}
 		}
 
-		else if ((p1_notshowed[p1_cardnum-1] == 4 && p2_notshowed[p2_cardnum-1] != 0 && p2_notshowed[p2_cardnum-1] != 1 && p2_notshowed[p2_cardnum-1] != 2 && p2_notshowed[p2_cardnum-1] != 3 ) || (p2_notshowed[p2_cardnum-1] == 4 && p1_notshowed[p1_cardnum-1] != 0 && p1_notshowed[p1_cardnum-1] != 1 && p1_notshowed[p1_cardnum-1] != 2 && p1_notshowed[p1_cardnum-1] != 3)) {
+		else if ((p1_notshowed[p1_cardnum-1] == 4 && p2_notshowed[p2_cardnum-1] != 0 && p2_notshowed[p2_cardnum-1] != 1 && p2_notshowed[p2_cardnum-1] != 2 && p2_notshowed[p2_cardnum-1] != 3 && p2_notshowed[p2_cardnum - 1] != 4) || (p2_notshowed[p2_cardnum-1] == 4 && p1_notshowed[p1_cardnum-1] != 0 && p1_notshowed[p1_cardnum-1] != 1 && p1_notshowed[p1_cardnum-1] != 2 && p1_notshowed[p1_cardnum-1] != 3 && p1_notshowed[p1_cardnum - 1] != 4)) {
 				if (player == 1) {
 					giveCardToP1();
 					return;
@@ -667,7 +665,7 @@ void checkToGetCard(int player) {
 				return;
 			}
 		}
-		else if ((p1_notshowed[p1_cardnum-1] == 9 && p2_notshowed[p2_cardnum-1] != 5 && p2_notshowed[p2_cardnum-1] != 6 && p2_notshowed[p2_cardnum-1] != 7 && p2_notshowed[p2_cardnum-1] != 8)||(p2_notshowed[p2_cardnum-1] == 9 && p1_notshowed[p1_cardnum-1] != 5 && p1_notshowed[p1_cardnum-1] != 6 && p1_notshowed[p1_cardnum-1] != 7 && p1_notshowed[p1_cardnum-1] != 8)) {
+		else if ((p1_notshowed[p1_cardnum-1] == 9 && p2_notshowed[p2_cardnum-1] != 5 && p2_notshowed[p2_cardnum-1] != 6 && p2_notshowed[p2_cardnum-1] != 7 && p2_notshowed[p2_cardnum-1] != 8 && p2_notshowed[p2_cardnum - 1] != 9)||(p2_notshowed[p2_cardnum-1] == 9 && p1_notshowed[p1_cardnum-1] != 5 && p1_notshowed[p1_cardnum-1] != 6 && p1_notshowed[p1_cardnum-1] != 7 && p1_notshowed[p1_cardnum-1] != 8 && p1_notshowed[p1_cardnum - 1] != 9)) {
 			if (player == 1) {
 				giveCardToP1();
 				return;
@@ -706,7 +704,7 @@ void checkToGetCard(int player) {
 				return;
 			}
 		}
-		else if ((p1_notshowed[p1_cardnum-1] == 14 && p2_notshowed[p2_cardnum-1] != 10 && p2_notshowed[p2_cardnum-1] != 11 && p2_notshowed[p2_cardnum-1] != 12 && p2_notshowed[p2_cardnum-1] != 13)||(p2_notshowed[p2_cardnum-1] == 14 && p1_notshowed[p1_cardnum-1] != 10 && p1_notshowed[p1_cardnum-1] != 11 && p1_notshowed[p1_cardnum-1] != 12 && p1_notshowed[p1_cardnum-1] != 13)) {
+		else if ((p1_notshowed[p1_cardnum-1] == 14 && p2_notshowed[p2_cardnum-1] != 10 && p2_notshowed[p2_cardnum-1] != 11 && p2_notshowed[p2_cardnum-1] != 12 && p2_notshowed[p2_cardnum-1] != 13 && p2_notshowed[p2_cardnum - 1] != 14)||(p2_notshowed[p2_cardnum-1] == 14 && p1_notshowed[p1_cardnum-1] != 10 && p1_notshowed[p1_cardnum-1] != 11 && p1_notshowed[p1_cardnum-1] != 12 && p1_notshowed[p1_cardnum-1] != 13 && p1_notshowed[p1_cardnum - 1] != 14)) {
 			if (player == 1) {
 				giveCardToP1();
 				return;
@@ -745,7 +743,7 @@ void checkToGetCard(int player) {
 				return;
 			}
 		}
-		else if ((p1_notshowed[p1_cardnum-1] == 19 && p2_notshowed[p2_cardnum-1] != 15 && p2_notshowed[p2_cardnum-1] != 16 && p2_notshowed[p2_cardnum-1] != 17 && p2_notshowed[p2_cardnum-1] != 18)|| (p2_notshowed[p2_cardnum-1] == 19 && p1_notshowed[p1_cardnum-1] != 15 && p1_notshowed[p1_cardnum-1] != 16 && p1_notshowed[p1_cardnum-1] != 17 && p1_notshowed[p1_cardnum-1] != 18)) {
+		else if ((p1_notshowed[p1_cardnum-1] == 19 && p2_notshowed[p2_cardnum-1] != 15 && p2_notshowed[p2_cardnum-1] != 16 && p2_notshowed[p2_cardnum-1] != 17 && p2_notshowed[p2_cardnum-1] != 18 && p2_notshowed[p2_cardnum-1]!=19)|| (p2_notshowed[p2_cardnum-1] == 19 && p1_notshowed[p1_cardnum-1] != 15 && p1_notshowed[p1_cardnum-1] != 16 && p1_notshowed[p1_cardnum-1] != 17 && p1_notshowed[p1_cardnum-1] != 18 && p1_notshowed[p1_cardnum - 1] != 19)) {
 			if (player == 1) {
 				giveCardToP1();
 				return;
@@ -837,14 +835,14 @@ void RestOfCard() {
 	gotoxy(9, 10);
 	printf("  ");
 	gotoxy(9, 10);
-	printf("%d", p1_card);
+	printf("%d", p1_card-p1_cardnum);
 	gotoxy(25, 16);
 	printf("%d", p1_cardnum);
 
 	gotoxy(70, 10);
 	printf("  ");
 	gotoxy(70, 10);
-	printf("%d", p2_card);
+	printf("%d", p2_card-p2_cardnum);
 	gotoxy(86, 16);
 	printf("%d", p2_cardnum);
 }
