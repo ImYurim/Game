@@ -526,13 +526,14 @@ void playerKeyInput() {
 		if (key == EXIT) {
 			break;
 		}
-		else if (key == P1RING) {
+		else if (key == P1RING && p2_ring==0) {
 			gotoxy(0 , 20);
 			printf("                               ");
 			gotoxy(3, 20);
 			setColor(yellow, black);
 			printf("p1이 종을 울렸습니다.");
 			setColor(white, black);
+			p1_ring = 1;
 			checkToGetCard(1);
 		}
 		else if (key == P1CARD && p1_open == 0) {
@@ -546,6 +547,7 @@ void playerKeyInput() {
 			p1_open = 1;
 			p1_cardnum++;
 			p1_card--;
+			p1_ring = 0;
 
 		}
 		else if (key == P2CARD && p2_open == 0) {
@@ -559,15 +561,17 @@ void playerKeyInput() {
 			p2_open = 1;
 			p2_cardnum++;
 			p2_card--;
+			p2_ring = 0;
 
 		}
-		else if (key == P2RING) {
+		else if (key == P2RING && p1_ring==0) {
 			gotoxy(59, 20);
 			printf("                                ");
 			gotoxy(61, 20);
 			setColor(purple, black);
 			printf("p2이 종을 울렸습니다.");
 			setColor(white, black);
+			p2_ring = 1;
 			checkToGetCard(2);
 		}
 		RestOfCard();
@@ -575,6 +579,7 @@ void playerKeyInput() {
 			p1_open = 0;
 			p2_open = 0;
 		}
+
 
 	}
 
