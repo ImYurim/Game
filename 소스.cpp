@@ -54,6 +54,8 @@ void checkToGetCard(int);
 void drawCard(int, int);
 void giveCardToP1();
 void giveCardToP2();
+void cleanP1Card();
+void cleanP2Card();
 
 //전역 변수
 //가지고 있는 카드 개수
@@ -365,48 +367,64 @@ void drawGame() {
 
 	setColor(white, black);
 	gotoxy(5, 7);
-	printf("┌─────┐");
+	printf("┌───────┐");
 	gotoxy(5, 8);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(5, 9);
-	printf("│     │");
-	gotoxy(8, 9);
-	printf("%d", p1_card);
+	printf("│       │");
 	gotoxy(5, 10);
-	printf("│     │");
+	printf("│       │");
+	gotoxy(9, 10);
+	printf("%d", p1_card);
 	gotoxy(5, 11);
-	printf("└─────┘");
+	printf("│       │");
+	gotoxy(5, 12);
+	printf("│       │");
+	gotoxy(5, 13);
+	printf("└───────┘");
 	gotoxy(8, 6);
-	printf("┌─────┐");
-	gotoxy(14, 7);
+	printf("┌───────┐");
+	gotoxy(16, 7);
 	printf("│");
-	gotoxy(14, 8);
+	gotoxy(16, 8);
 	printf("│");
-	gotoxy(14, 9);
+	gotoxy(16, 9);
 	printf("│");
-	gotoxy(12, 10);
+	gotoxy(16, 10);
+	printf("│");
+	gotoxy(16, 11);
+	printf("│");
+	gotoxy(14, 12);
 	printf("──┘");
 
 	//뒤집은 카드
 	gotoxy(20, 7);
-	printf("┌─────┐");
+	printf("┌───────┐");
 	gotoxy(20, 8);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(20, 9);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(20, 10);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(20, 11);
-	printf("└─────┘");
+	printf("│       │");
+	gotoxy(20, 12);
+	printf("│       │");
+	gotoxy(20, 13);
+	printf("└───────┘");
 	gotoxy(23, 6);
-	printf("┌─────┐");
-	gotoxy(29, 7);
+	printf("┌───────┐");
+	gotoxy(31, 7);
 	printf("│");
-	gotoxy(29, 8);
+	gotoxy(31, 8);
 	printf("│");
-	gotoxy(29, 9);
+	gotoxy(31, 9);
 	printf("│");
-	gotoxy(27, 10);
+	gotoxy(31, 10);
+	printf("│");
+	gotoxy(31, 11);
+	printf("│");
+	gotoxy(29, 12);
 	printf("──┘");
 
 	//p2 카드 그리기
@@ -416,48 +434,65 @@ void drawGame() {
 	setColor(white, black);
 	//안 뒤집은 카드
 	gotoxy(66, 7);
-	printf("┌─────┐");
+	printf("┌───────┐");
 	gotoxy(66, 8);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(66, 9);
-	printf("│     │");
-	gotoxy(69, 9);
-	printf("%d", p2_card);
+	printf("│       │");
 	gotoxy(66, 10);
-	printf("│     │");
+	printf("│       │");
+	gotoxy(70, 10);
+	printf("%d", p1_card);
 	gotoxy(66, 11);
-	printf("└─────┘");
+	printf("│       │");
+	gotoxy(66, 12);
+	printf("│       │");
+	gotoxy(66, 13);
+	printf("└───────┘");
 	gotoxy(69, 6);
-	printf("┌─────┐");
-	gotoxy(75, 7);
+	printf("┌───────┐");
+	gotoxy(77, 7);
 	printf("│");
-	gotoxy(75, 8);
+	gotoxy(77, 8);
 	printf("│");
-	gotoxy(75, 9);
+	gotoxy(77, 9);
 	printf("│");
-	gotoxy(73, 10);
+	gotoxy(77, 10);
+	printf("│");
+	gotoxy(77, 11);
+	printf("│");
+	gotoxy(75, 12);
 	printf("──┘");
+
 
 	//뒤집은 카드
 	gotoxy(82, 7);
-	printf("┌─────┐");
+	printf("┌───────┐");
 	gotoxy(82, 8);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(82, 9);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(82, 10);
-	printf("│     │");
+	printf("│       │");
 	gotoxy(82, 11);
-	printf("└─────┘");
+	printf("│       │");
+	gotoxy(82, 12);
+	printf("│       │");
+	gotoxy(82, 13);
+	printf("└───────┘");
 	gotoxy(85, 6);
-	printf("┌─────┐");
-	gotoxy(91, 7);
+	printf("┌───────┐");
+	gotoxy(93, 7);
 	printf("│");
-	gotoxy(91, 8);
+	gotoxy(93, 8);
 	printf("│");
-	gotoxy(91, 9);
+	gotoxy(93, 9);
 	printf("│");
-	gotoxy(89, 10);
+	gotoxy(93, 10);
+	printf("│");
+	gotoxy(93, 11);
+	printf("│");
+	gotoxy(91, 12);
 	printf("──┘");
 
 
@@ -497,14 +532,14 @@ void playerKeyInput() {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
-			printf("d입력 p1이 종을 울렸다.");
+			printf("p1이 종을 울렸습니다.");
 			checkToGetCard(1);
 		}
 		else if (key == P1CARD && p1_open == 0) {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
-			printf("a입력 p1이 카드를 뒤집었다.");
+			printf("p1이 카드를 뒤집었다.");
 			drawCard(p1_notshowed[p1_cardnum], 1);
 			p1_open = 1;
 			p1_cardnum++;
@@ -515,7 +550,7 @@ void playerKeyInput() {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
-			printf("4입력 p2이 카드를 뒤집었다.");
+			printf("p2이 카드를 뒤집었다.");
 			drawCard(p2_notshowed[p2_cardnum], 2);
 			p2_open = 1;
 			p2_cardnum++;
@@ -526,7 +561,7 @@ void playerKeyInput() {
 			gotoxy(0, 20);
 			printf("                            ");
 			gotoxy(0, 20);
-			printf("6입력 p2이 종을 울렸다.");
+			printf("p2이 종을 울렸다.");
 			checkToGetCard(2);
 		}
 		RestOfCard();
@@ -775,15 +810,46 @@ void giveCardToP2() {
 
 //플레이어들의 남은 카드
 void RestOfCard() {
-	gotoxy(8, 9);
+	gotoxy(9, 10);
 	printf("  ");
-	gotoxy(8, 9);
+	gotoxy(9, 10);
 	printf("%d", p1_card);
-	gotoxy(69, 9);
+	gotoxy(70, 10);
 	printf("  ");
-	gotoxy(69, 9);
+	gotoxy(70, 10);
 	printf("%d", p2_card);
 }
+
+//카드 다시 그리기 전 이전 그림 삭제
+void cleanP1Card() {
+	setColor(white, black);
+	gotoxy(22, 8);
+	printf(" ");
+	gotoxy(27, 8);
+	printf(" ");
+	gotoxy(25, 10);
+	printf(" ");
+	gotoxy(22, 12);
+	printf(" ");
+	gotoxy(27, 12);
+	printf(" ");
+}
+
+void cleanP2Card() {
+	setColor(white, black);
+	gotoxy(84, 8);
+	printf(" ");
+	gotoxy(89, 8);
+	printf(" ");
+	gotoxy(87, 10);
+	printf(" ");
+	gotoxy(84, 12);
+	printf(" ");
+	gotoxy(89, 12);
+	printf(" ");
+
+}
+
 
 //뒤집혀진 카드 그리기
 void drawCard(int cardnum, int player) {
@@ -793,184 +859,522 @@ void drawCard(int cardnum, int player) {
 
 	switch (cardnum) {
 		//1개
-	case 0:
-	case 5:
-	case 10:
-	case 15:
-	{
+	case 0: {
+
 		if (player == 1) {
-			gotoxy(22, 8);
-			printf("   ");
-			gotoxy(22, 9);
-			printf("   ");
-			gotoxy(22, 10);
-			printf("   ");
-			gotoxy(23, 9);
+			cleanP1Card();
+			setColor(blue, blue);
+			gotoxy(25, 10);
 		}
 		else if (player == 2) {
-			gotoxy(84, 8);
-			printf("   ");
-			gotoxy(84, 9);
-			printf("   ");
-			gotoxy(84, 10);
-			printf("   ");
-			gotoxy(85, 9);
+			cleanP2Card();
+			setColor(blue, blue);
+			gotoxy(87, 10);
 		}
 		printf("%c", card[cardnum]);
-
+		setColor(white, black);
+		break;
 	}
-	break;
+	case 5: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(green, green);
+			gotoxy(25, 10);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(green, green);
+			gotoxy(87, 10);
+		}
+		printf("%c", card[cardnum]);
+		setColor(white, black);
+		break;
+	}
+	case 10: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(red, red);
+			gotoxy(25, 10);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(red, red);
+			gotoxy(87, 10);
+		}
+		printf("%c", card[cardnum]);
+		setColor(white, black);
+		break;
+	}
+	case 15:
+	{
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(brown, brown);
+			gotoxy(25, 10);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(brown, brown);
+			gotoxy(87, 10);
+		}
+		printf("%c", card[cardnum]);
+		setColor(white, black);
+		break;
+	}
 	//2개
 	case 1:
-	case 6:
-	case 11:
+	{
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(blue, blue);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(blue, blue);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+	case 6: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(green, green);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(green, green);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+	case 11: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(red, red);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(red, red);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
 	case 16:
 	{
+
 		if (player == 1) {
-			gotoxy(22, 8);
-			printf("   ");
-			gotoxy(22, 9);
-			printf("   ");
-			gotoxy(22, 10);
-			printf("   ");
+			cleanP1Card();
+			setColor(brown, brown);
 			gotoxy(22, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 10);
+			gotoxy(27, 12);
 			printf("%c", card[cardnum]);
 		}
 		else if (player == 2) {
-			gotoxy(84, 8);
-			printf("   ");
-			gotoxy(84, 9);
-			printf("   ");
-			gotoxy(84, 10);
-			printf("   ");
+			cleanP2Card();
+			setColor(brown, brown);
 			gotoxy(84, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 10);
+			gotoxy(89, 12);
 			printf("%c", card[cardnum]);
 		}
+		setColor(white, black);
+		break;
+	}
+	//3개
+	case 2: {
 
-	}break;
+		if (player == 1) {
+			cleanP1Card();
+			setColor(blue, blue);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(blue, blue);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
 
-	case 2:
-	case 7:
+		}
+		setColor(white, black);
+		break;
+	}
+	case 7: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(green, green);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(green, green);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+
+		}
+		setColor(white, black);
+		break;
+	}
 	case 12:
+	{
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(red, red);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(red, red);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+
+		}
+		setColor(white, black);
+		break;
+	}
 	case 17:
 	{
+
 		if (player == 1) {
-			gotoxy(22, 8);
-			printf("   ");
-			gotoxy(22, 9);
-			printf("   ");
-			gotoxy(22, 10);
-			printf("   ");
+			cleanP1Card();
+			setColor(brown, brown);
 			gotoxy(22, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(23, 9);
+			gotoxy(25, 10);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 10);
+			gotoxy(27, 12);
 			printf("%c", card[cardnum]);
 		}
 		else if (player == 2) {
-			gotoxy(84, 8);
-			printf("   ");
-			gotoxy(84, 9);
-			printf("   ");
-			gotoxy(84, 10);
-			printf("   ");
+			cleanP2Card();
+			setColor(brown, brown);
 			gotoxy(84, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(85, 9);
+			gotoxy(87, 10);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 10);
+			gotoxy(89, 12);
 			printf("%c", card[cardnum]);
 
 		}
+		setColor(white, black);
+		break;
+	}
 
-	}break;
-	case 3:
-	case 8:
-	case 13:
+	//4개
+	case 3: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(blue, blue);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(blue, blue);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+
+	case 8: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(green, green);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(green, green);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+
+	case 13: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(red, red);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(red, red);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+
 	case 18:
 	{
+
 		if (player == 1) {
-			gotoxy(22, 8);
-			printf("   ");
-			gotoxy(22, 9);
-			printf("   ");
-			gotoxy(22, 10);
-			printf("   ");
+			cleanP1Card();
+			setColor(brown, brown);
 			gotoxy(22, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 8);
+			gotoxy(27, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(22, 10);
+			gotoxy(22, 12);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 10);
+			gotoxy(27, 12);
 			printf("%c", card[cardnum]);
 		}
 		else if (player == 2) {
-			gotoxy(84, 8);
-			printf("   ");
-			gotoxy(84, 9);
-			printf("   ");
-			gotoxy(84, 10);
-			printf("   ");
+			cleanP2Card();
+			setColor(brown, brown);
 			gotoxy(84, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 8);
+			gotoxy(89, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(84, 10);
+			gotoxy(84, 12);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 10);
+			gotoxy(89, 12);
 			printf("%c", card[cardnum]);
 		}
+		setColor(white, black);
+		break;
 	}
-	break;
-	case 4:
-	case 9:
-	case 14:
+	//5개
+	case 4: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(blue, blue);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(blue, blue);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+	case 9: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(green, green);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(green, green);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
+	case 14: {
+
+		if (player == 1) {
+			cleanP1Card();
+			setColor(red, red);
+			gotoxy(22, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(25, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(22, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(27, 12);
+			printf("%c", card[cardnum]);
+		}
+		else if (player == 2) {
+			cleanP2Card();
+			setColor(red, red);
+			gotoxy(84, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 8);
+			printf("%c", card[cardnum]);
+			gotoxy(87, 10);
+			printf("%c", card[cardnum]);
+			gotoxy(84, 12);
+			printf("%c", card[cardnum]);
+			gotoxy(89, 12);
+			printf("%c", card[cardnum]);
+		}
+		setColor(white, black);
+		break;
+	}
 	case 19:
 	{
+
 		if (player == 1) {
-			gotoxy(22, 8);
-			printf("   ");
-			gotoxy(22, 9);
-			printf("   ");
-			gotoxy(22, 10);
-			printf("   ");
+			cleanP1Card();
+			setColor(brown, brown);
 			gotoxy(22, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 8);
+			gotoxy(27, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(23, 9);
+			gotoxy(25, 10);
 			printf("%c", card[cardnum]);
-			gotoxy(22, 10);
+			gotoxy(22, 12);
 			printf("%c", card[cardnum]);
-			gotoxy(24, 10);
+			gotoxy(27, 12);
 			printf("%c", card[cardnum]);
 		}
 		else if (player == 2) {
-			gotoxy(84, 8);
-			printf("   ");
-			gotoxy(84, 9);
-			printf("   ");
-			gotoxy(84, 10);
-			printf("   ");
+			cleanP2Card();
+			setColor(brown, brown);
 			gotoxy(84, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 8);
+			gotoxy(89, 8);
 			printf("%c", card[cardnum]);
-			gotoxy(85, 9);
+			gotoxy(87, 10);
 			printf("%c", card[cardnum]);
-			gotoxy(84, 10);
+			gotoxy(84, 12);
 			printf("%c", card[cardnum]);
-			gotoxy(86, 10);
+			gotoxy(89, 12);
 			printf("%c", card[cardnum]);
 		}
+		setColor(white, black);
+		break;
 	}
-	break;
+
 
 
 
