@@ -541,6 +541,10 @@ void playerKeyInput() {
 			printf("                            ");
 			gotoxy(0, 20);
 			printf("                                 ");
+			gotoxy(61, 23);
+			printf("                            ");
+			gotoxy(59, 20);
+			printf("                                 ");
 			gotoxy(3, 20);
 			printf("p1이 카드를 뒤집었습니다.");
 			drawCard(p1_notshowed[p1_cardnum], 1);
@@ -551,6 +555,10 @@ void playerKeyInput() {
 
 		}
 		else if (key == P2CARD && p2_open == 0) {
+			gotoxy(3, 23);
+			printf("                            ");
+			gotoxy(0, 20);
+			printf("                                 ");
 			gotoxy(61, 23);
 			printf("                            ");
 			gotoxy(59, 20);
@@ -786,6 +794,7 @@ void giveCardToP1() {
 	}
 	p2_card = p2_card - p2_cardnum;
 	p2_cardnum = 0;
+
 	gotoxy(3, 23);
 	printf("                            ");
 	gotoxy(3, 23);
