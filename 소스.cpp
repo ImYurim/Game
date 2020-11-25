@@ -721,22 +721,22 @@ void checkToGetCard(int player) {
 
 void giveCardToP1() {
 	//p2가 준 카드 받기
-	for (int i = 0; i <= p2_cardnum; i++) {
+	for (int i = 0; i < p2_cardnum; i++) {
 		p1_card++;
 		p1_notshowed[p1_card] = p2_notshowed[i];
 	}
 	//p1이 공개했던 카드 다시 맨뒤로 보내기
-	for (int i = 0; i <= p1_cardnum; i++) {
+	for (int i = 0; i < p1_cardnum; i++) {
 		p1_notshowed[p1_card+1+i] = p1_notshowed[i];
 	}
 	//p1공개했던 카드 배열에서 삭제
-	for (int i = p1_cardnum + 1; i <= p1_card; i++) {
-		p1_notshowed[i - p1_cardnum-1] = p1_notshowed[i];
+	for (int i = p1_cardnum ; i < p1_card; i++) {
+		p1_notshowed[i - p1_cardnum] = p1_notshowed[i];
 	}
 	p1_cardnum = 0;
 	//p2는 p1에게 준 카드 배열에서 삭제
-	for (int i = p2_cardnum+1; i <= p2_card; i++) {
-		p2_notshowed[i - p2_cardnum-1] = p2_notshowed[i];
+	for (int i = p2_cardnum; i < p2_card; i++) {
+		p2_notshowed[i - p2_cardnum] = p2_notshowed[i];
 	}
 	p2_card = p2_card - p2_cardnum;
 	p2_cardnum = 0;
@@ -747,21 +747,21 @@ void giveCardToP1() {
 }
 
 void giveCardToP2() {
-	for (int i = 0; i <= p1_cardnum; i++) {
+	for (int i = 0; i < p1_cardnum; i++) {
 		p2_card++;
 		p2_notshowed[p2_card] = p1_notshowed[i];
 	}
 	//p2이 공개했던 카드 다시 맨뒤로 보내기
-	for (int i = 0; i <= p2_cardnum; i++) {
+	for (int i = 0; i < p2_cardnum; i++) {
 		p2_notshowed[p2_card+1+i] = p2_notshowed[i];
 	}
-	for (int i = p2_cardnum+1; i <= p2_card; i++) {
-		p2_notshowed[i - p2_cardnum-1] = p2_notshowed[i];
+	for (int i = p2_cardnum; i <= p2_card; i++) {
+		p2_notshowed[i - p2_cardnum] = p2_notshowed[i];
 	}
 	p2_cardnum = 0;
 	//p1은 p2에게 준 카드 배열에서 삭제
-	for (int i = p1_cardnum+1; i <= p1_card; i++) {
-		p1_notshowed[i - p1_cardnum-1] = p1_notshowed[i];
+	for (int i = p1_cardnum; i <= p1_card; i++) {
+		p1_notshowed[i - p1_cardnum] = p1_notshowed[i];
 
 	}
 	p1_card = p1_card - p1_cardnum;
