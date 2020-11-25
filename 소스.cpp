@@ -526,7 +526,7 @@ void playerKeyInput() {
 		if (key == EXIT) {
 			break;
 		}
-		else if (key == P1RING && p2_ring==0) {
+		else if (key == P1RING && p2_ring==0 && (p1_cardnum == p2_cardnum)) {
 			gotoxy(0 , 20);
 			printf("                               ");
 			gotoxy(3, 20);
@@ -536,7 +536,7 @@ void playerKeyInput() {
 			p1_ring = 1;
 			checkToGetCard(1);
 		}
-		else if (key == P1CARD && p1_open == 0) {
+		else if (key == P1CARD && p1_open == 0 ) {
 			gotoxy(3, 23);
 			printf("                            ");
 			gotoxy(0, 20);
@@ -564,7 +564,7 @@ void playerKeyInput() {
 			p2_ring = 0;
 
 		}
-		else if (key == P2RING && p1_ring==0) {
+		else if (key == P2RING && p1_ring==0 && (p1_cardnum==p2_cardnum)) {
 			gotoxy(59, 20);
 			printf("                                ");
 			gotoxy(61, 20);
@@ -829,10 +829,15 @@ void RestOfCard() {
 	printf("  ");
 	gotoxy(9, 10);
 	printf("%d", p1_card);
+	gotoxy(25, 16);
+	printf("%d", p1_cardnum);
+
 	gotoxy(70, 10);
 	printf("  ");
 	gotoxy(70, 10);
 	printf("%d", p2_card);
+	gotoxy(86, 16);
+	printf("%d", p2_cardnum);
 }
 
 //카드 다시 그리기 전 이전 그림 삭제
